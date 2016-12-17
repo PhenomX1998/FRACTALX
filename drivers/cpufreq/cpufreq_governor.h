@@ -134,12 +134,13 @@ struct cpu_dbs_common_info {
 	u64 prev_cpu_idle;
 	u64 prev_cpu_wall;
 	u64 prev_cpu_nice;
-	unsigned int prev_load;
 	/*
-	 * Flag to ensure that we copy the previous load only once, upon the
-	 * first wake-up from idle.
+	 * Used to keep track of load in the previous interval. However, when
+	 * explicitly set to zero, it is used as a flag to ensure that we copy
+	 * the previous load to the current interval only once, upon the first
+	 * wake-up from idle.
 	 */
-	bool copy_prev_load;
+	unsigned int prev_load;
 	struct cpufreq_policy *cur_policy;
 	struct delayed_work work;
 	/*
@@ -166,6 +167,8 @@ struct cs_cpu_dbs_info_s {
 	unsigned int down_skip;
 	unsigned int requested_freq;
 	unsigned int enable:1;
+	unsigned int twostep_counter;
+	u64 twostep_time;
 };
 
 /* Per policy Governors sysfs tunables */
@@ -185,6 +188,10 @@ struct cs_dbs_tuners {
 	unsigned int up_threshold;
 	unsigned int down_threshold;
 	unsigned int freq_step;
+	unsigned int input_boost_freq;
+	unsigned int input_boost_duration;
+	unsigned int twostep_threshold;
+	unsigned int min_load;
 };
 
 /* Common Governor data across policies */
@@ -218,6 +225,18 @@ struct common_dbs_data {
 struct dbs_data {
 	struct common_dbs_data *cdata;
 	unsigned int min_sampling_rate;
+	struct cpufreq_frequency_table *freq_table;
+	bool freq_table_desc;
+	unsigned int freq_table_size;
+	unsigned int pol_min;
+	unsigned int pol_max;
+	unsigned int min_scaling_freq;
+	unsigned int limit_table_start;
+	unsigned int limit_table_end;
+	unsigned int max_scaling_freq_hard;
+	unsigned int max_scaling_freq_soft;
+	unsigned int scaling_mode_up;
+	unsigned int scaling_mode_down;
 	int usage_count;
 	void *tuners;
 
