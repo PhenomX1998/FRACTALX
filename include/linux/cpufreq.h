@@ -108,7 +108,6 @@ struct cpufreq_policy {
 	 *     __cpufreq_governor(data, CPUFREQ_GOV_POLICY_EXIT);
 	 */
 	struct rw_semaphore	rwsem;
-
 	unsigned int util;
 
 	/* Synchronization for frequency transitions */
@@ -264,10 +263,10 @@ struct cpufreq_driver {
 	/* should be defined, if possible */
 	unsigned int	(*get)	(unsigned int cpu);
 
-        unsigned int (*getavg)	(struct cpufreq_policy *policy,
-                                 unsigned int cpu);
-
 	/* optional */
+	unsigned int (*getavg)	(struct cpufreq_policy *policy,
+                            unsigned int cpu);
+
 	int	(*bios_limit)	(int cpu, unsigned int *limit);
 
 	int	(*exit)		(struct cpufreq_policy *policy);
@@ -473,8 +472,6 @@ struct cpufreq_governor {
 	struct module		*owner;
 };
 
-extern int __cpufreq_driver_getavg(struct cpufreq_policy *policy,
-                                   unsigned int cpu);
 
 /* Pass a target to the cpufreq driver */
 int cpufreq_driver_target(struct cpufreq_policy *policy,
@@ -483,6 +480,8 @@ int cpufreq_driver_target(struct cpufreq_policy *policy,
 int __cpufreq_driver_target(struct cpufreq_policy *policy,
 				   unsigned int target_freq,
 				   unsigned int relation);
+extern int __cpufreq_driver_getavg(struct cpufreq_policy *policy,
+                                   unsigned int cpu);
 int cpufreq_register_governor(struct cpufreq_governor *governor);
 void cpufreq_unregister_governor(struct cpufreq_governor *governor);
 
@@ -535,6 +534,9 @@ extern struct cpufreq_governor cpufreq_gov_zzmoove;
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_LIONFISH)
 extern struct cpufreq_governor cpufreq_gov_lionfish;
 #define CPUFREQ_DEFAULT_GOVERNOR (&cpufreq_gov_lionfish)
+#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_ALUCARD)
+extern struct cpufreq_governor cpufreq_gov_alucard;
+#define CPUFREQ_DEFAULT_GOVERNOR (&cpufreq_gov_alucard)
 #endif
 
 /*********************************************************************
