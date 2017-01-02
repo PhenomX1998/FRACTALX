@@ -20,7 +20,7 @@ TOOLCHAIN_DIR="/home/slawek/Android/Toolchains/"
 
 # Kernel Details
 BASE_YARPIIN_VER="YARPIIN.OP3.CM14"
-VER=".001"
+VER=".002"
 YARPIIN_VER="$BASE_YARPIIN_VER$VER"
 
 # Vars
