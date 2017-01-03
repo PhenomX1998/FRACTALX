@@ -1,0 +1,36 @@
+
+Project name: Yarpiin-Kernel-OP3-CM
+
+03/01/2017
+
+  * cpufreq: Set hardlimits to OC frequencies (Slawek) [260c1ac]
+  * cpufreq: Ironactive fix cherrypick (Slawek) [4a3f149]
+  * Kernel version 2 (Slawek) [9e557e9]
+  * qcom-cpufreq: ensure startup is according to default frequencies (no overclocking/underclocking) (andip71) [26784ba]
+  * cpufreq: Fix partially broken handling for min/max hardlimits (andip71) [e911f15]
+  * qcom: msm-core: queue work on system_power_efficient_wq (Francisco Franco) [efce015]
+  * drivers: power: bcl: queue work on system_power_efficient_wq (Francisco Franco) [d86c531]
+  * drivers: wakeup: bypass two WiFi wakelocks (Francisco Franco) [82cd002]
+  * UPSTREAM: cpuidle: Clean up fallback handling in cpuidle_idle_call() (Rafael J. Wysocki) [0b9b99b]
+  * UPSTREAM: PM / sleep: Re-implement suspend-to-idle handling (Rafael J. Wysocki) [ab1b7ab]
+  * UPSTREAM: sched/fair: Avoid pulling all tasks in idle balancing (Yuyang Du) [3e6e6bb]
+  * UPSTREAM: sched: Improve load balancing in the presence of idle CPUs (Preeti U Murthy) [d409d3f]
+  * power: bcl: queue work on system_power_efficient_wq (Francisco Franco) [6f40c62]
+  * power: wakeup: prevent IPA_WS wakelock from being acquired by default (Francisco Franco) [1fc80c3]
+  * netdev, sched/wait: Fix sleeping inside wait event (Peter Zijlstra) [c3e43df]
+  * PCI / PM: Avoid resuming more devices during system suspend (Rafael J. Wysocki) [56dd4f2]
+  * PCI / PM: Avoid resuming PCI devices during system suspend (Rafael J. Wysocki) [f1976ed]
+  * display: add a simple api to query the display state (on/off) at any point in time (franciscofranco) [959a5b7]
+  * CHROMIUM: cpufreq: interactive: calculate load before freq change (franciscofranco) [15a3ffc]
+  * cpufreq: interactive: remove hispeed_freq init restriction (Francisco Franco) [8bfe3be]
+  * cpufreq: interactive: reduce timer with screen off (franciscofranco) [9a75b77]
+  * Add Changelog script (Slawek) [354e2e9]
+  * msm8996: Overclocking frequencies (flar2) [300f56d]
+  * input: synaptics: s3320: elevate workqueues to high-priority (Park Ju Hyung) [10ebe04]
+  * gpio_keys: call oem_check_force_dump_key() later (Park Ju Hyung) [7d6b21e]
+  * cpufreq: tidy up govs (Slawek) [1617892]
+  * alucard, darkness  cpu govs: Code optimization. (Alucard24) [f14ec84]
+  * drivers: cpu-boost: optimize policy update loop on input cpufreq boost (Francisco Franco) [d9d1f6c]
+  * cpufreq: cpu-boost: don't boost over user set max freq and break out earlier (engstk) [5716410]
+  * cpuidle: don't disable cpuidle when entering suspend (Tim Murray) [c931682]
+
