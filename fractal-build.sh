@@ -12,30 +12,30 @@ clear
 THREAD="-j$(grep -c ^processor /proc/cpuinfo)"
 KERNEL="Image.gz-dtb"
 DTBIMAGE="dtb"
-DEFCONFIG="yarpiin_defconfig"
-KERNEL_DIR="/home/slawek/Android/Yarpiin-Kernel-OP3-CM"
+DEFCONFIG="fractalx_defconfig"
+KERNEL_DIR="/home/phenomx1998/fractal"
 RESOURCE_DIR="$KERNEL_DIR/.."
-ANYKERNEL_DIR="/home/slawek/Android/Kernelzip/YARPIIN.OP3.CM14.test"
-TOOLCHAIN_DIR="/home/slawek/Android/Toolchains/"
+ANYKERNEL_DIR="/home/phenomx1998/FractalX.Test"
+TOOLCHAIN_DIR="/home/phenomx1998/toolchains/"
 
 # Kernel Details
-BASE_YARPIIN_VER="YARPIIN.OP3.CM14"
-VER=".002"
-YARPIIN_VER="$BASE_YARPIIN_VER$VER"
+BASE_FRACTAL_VER="fractalX"
+VER="1.0"
+FRACTAL_VER="$BASE_FRACTAL_VER$VER"
 
 # Vars
-export LOCALVERSION=-`echo $YARPIIN_VER`
+export LOCALVERSION=-`echo $FRACTAL_VER`
 export CROSS_COMPILE="$TOOLCHAIN_DIR/aarch64-linux-android-6.x/bin/aarch64-linux-android-"
 export ARCH=arm64
 export SUBARCH=arm64
-export KBUILD_BUILD_USER=yarpiin
-export KBUILD_BUILD_HOST=kernel
+export KBUILD_BUILD_USER=phenomx1998
+export KBUILD_BUILD_HOST=phenoms-knight
 
 # Paths
 REPACK_DIR="$ANYKERNEL_DIR"
 PATCH_DIR="$ANYKERNEL_DIR/patch"
 MODULES_DIR="$ANYKERNEL_DIR/modules"
-ZIP_MOVE="/home/slawek/Android/Kernelzip"
+ZIP_MOVE="/home/phenomx1998/Kernelzip"
 ZIMAGE_DIR="$KERNEL_DIR/arch/arm64/boot"
 
 # Functions
@@ -55,7 +55,7 @@ function make_kernel {
 		echo
 		make $DEFCONFIG
 		make $THREAD
-		cp -vr $ZIMAGE_DIR/$KERNEL $REPACK_DIR/zImage
+		cp -vr $ZIMAGE_DIR/$KERNEL $REPACK_DIR/Image.gz-dtb
 }
 
 function make_modules {
@@ -66,14 +66,12 @@ function make_modules {
 		find $KERNEL_DIR -name '*.ko' -exec cp -v {} $MODULES_DIR \;
 }
 
-function make_dtb { 
-    $REPACK_DIR/tools/dtbToolCM -2 -o $REPACK_DIR/$DTBIMAGE -s 2048 -p scripts/dtc/ arch/arm64/boot/ 
-} 
+
 
 function make_zip {
 		cd $REPACK_DIR
-		zip -r9 `echo $YARPIIN_VER`.zip *
-		mv  `echo $YARPIIN_VER`.zip $ZIP_MOVE
+		zip -r9 `echo $FRACTAL_VER`.zip *
+		mv  `echo $FRACTAL_VER`.zip $ZIP_MOVE
 		cd $KERNEL_DIR
 }
 
@@ -81,18 +79,18 @@ function make_zip {
 DATE_START=$(date +"%s")
 
 echo -e "${green}"
-echo "YARPIIN Kernel Creation Script:"
+echo "FRACTALX Kernel Creation Script:"
 echo
 
 echo "---------------"
 echo "Kernel Version:"
 echo "---------------"
 
-echo -e "${red}"; echo -e "${blink_red}"; echo "$YARPIIN_VER"; echo -e "${restore}";
+echo -e "${red}"; echo -e "${blink_red}"; echo "$FRACTAL_VER"; echo -e "${restore}";
 
 echo -e "${green}"
 echo "-----------------"
-echo "Making YARPIIN Kernel:"
+echo "Making FRACTALX Kernel:"
 echo "-----------------"
 echo -e "${restore}"
 
@@ -124,7 +122,7 @@ case "$dchoice" in
 	y|Y)
 		make_kernel
 		make_modules
-		make_dtb
+
 		break
 		;;
 	n|N )
@@ -168,4 +166,3 @@ DATE_END=$(date +"%s")
 DIFF=$(($DATE_END - $DATE_START))
 echo "Time: $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
 echo
-
