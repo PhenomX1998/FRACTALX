@@ -1,6 +1,25 @@
 
 Project name: White-Wolf-OP3-LOS
 
+
+05/06/2017
+
+  * Revert "Introduce Adreno idler for devfreq-based Adreno devices" (Slawek) [64908a3]
+  * Revert "adreno_idler: switch to count based instead of time based" (arter97) [206bc88]
+  * Revert "adreno_idler: remove frequency bump" (arter97) [9aa5354]
+  * Revert "adreno_idler: fix-up type definitions" (arter97) [40dcd03]
+  * Revert "adreno_idler: fix-up some comments" (arter97) [dd694e4]
+  * Revert "adreno_idler: Add display state awareness" (frap129) [4a07dd3]
+  * Revert "adreno_idler: fix typos :)" (arter97) [ef1e887]
+  * Revert "yarpiin_defconfig: enable adreno idler" (Slawek) [255490f]
+  * Revert "ALSA: pcm : Call kill_fasync() in stream lock" (dianlujitao) [99e2602]
+  * Revert "xfrm_user: validate XFRM_MSG_NEWAE XFRMA_REPLAY_ESN_VAL replay_window" (dianlujitao) [cbca493]
+  * defconfig : gud: Remove gud driver (Trudy Shearer) [04c1d98]
+  * msm : gud: Remove gud driver (Trudy Shearer) [5557b58]
+  * ARM : dts: msm: Add 600Mhz GPU clock support for SDM450 (Hareesh Gundu) [01958d3]
+  * ARM : dts: msm: Update gfx clock corners for SDM450 (Taniya Das) [0f78307]
+  * clk : msm: Add support for 600MHz for GPU clock (Taniya Das) [6225a08]
+  
 25/05/2017
 
   * Linux 3.18.47 drm/gma500: Add compat ioctl (lennart) [06b5d66]
